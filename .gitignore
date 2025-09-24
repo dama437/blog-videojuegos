@@ -1,0 +1,13 @@
+venv/
+env/
+ENV/
+.env/
+virtualenv/
+venv*/
+env.py
+.env.local
+.env.*.local
+
+
+*.venv
+python-env
