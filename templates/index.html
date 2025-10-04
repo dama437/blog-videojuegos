@@ -1,7 +1,49 @@
-{% extends "base.html" %}
-
+{% extends "base.html" %} 
+{% load static %} 
 {% block contenido %}
 
-<h1>hola mundo</h1>
+<h2 class="page-title">
+  Comparte y Aprende Programando
+</h2>
+<p style="padding: 20px 20px;">
+  Bienvenido al blog del IES Machagai, destinado a los alumnos y docentes de la Tecnicatura Superior en Desarrollo de Software. Aquí podrás descubrir proyectos, compartir experiencias y aprender con los trabajos de los estudiantes.
+</p>
+
+<section class="feature">
+
+  <!-- Bloque 1: Proyectos de alumnos -->
+  <div class="feature-item">
+    <img src="{% static 'img/proyectos.webp' %}" alt="Proyectos de alumnos" />
+    <div class="feature-text right">
+      <h2>Proyectos Destacados</h2>
+      <p>
+        Conoce los trabajos más innovadores de nuestros estudiantes: aplicaciones web, juegos, sistemas y soluciones prácticas. Cada proyecto muestra creatividad y esfuerzo.
+      </p>
+    </div>
+  </div>
+
+  <!-- Bloque 2: Tutoriales y recursos -->
+  <div class="feature-item2">
+    <img src="{% static 'img/tutoriales.png' %}" alt="Tutoriales y recursos" />
+    <div class="feature-text left">
+      <h2>Aprende con Tutoriales</h2>
+      <p>
+        Accede a guías paso a paso, ejercicios prácticos y ejemplos de código realizados por docentes y alumnos avanzados. Perfecto para aprender nuevas habilidades rápidamente.
+      </p>
+    </div>
+  </div>
+
+  <!-- Bloque 3: Comunidad de aprendizaje -->
+  <div class="feature-item">
+    <img src="{% static 'img/comunidad.jpg' %}" alt="Comunidad de aprendizaje" />
+    <div class="feature-text right">
+      <h2>Comunidad y Colaboración</h2>
+      <p>
+        Comenta, comparte ideas y colabora con otros estudiantes. Nuestra comunidad es el lugar ideal para resolver dudas, inspirarse y mejorar tus proyectos con la experiencia de todos.
+      </p>
+    </div>
+  </div>
+
+</section>
 
 {% endblock contenido %}

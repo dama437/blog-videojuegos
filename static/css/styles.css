@@ -1,0 +1,91 @@
+/* ===================== */
+/* ESTILOS GLOBALES BASE */
+/* ===================== */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+body {
+ background: linear-gradient(
+    rgba(230, 240, 255, 0.9),
+    rgba(200, 220, 245, 0.9)
+  );
+  color: #333;
+  line-height: 1.6;
+  padding-top: 80px; /* ajusta según la altura de tu header */
+}
+
+main{
+  padding: 20px 20px;
+  margin: 20px auto;
+}
+
+/* --------------------- */
+/* HEADER & NAVBAR */
+/* --------------------- */
+header {
+    background: linear-gradient(90deg, #c000ff, #b30092);
+    padding: 12px 40px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    color: #fff;
+    position: fixed;    /* 🔹 lo hace fijo */
+    top: 0;             /* 🔹 lo pega arriba */
+    left: 0;
+    width: 100%;        /* 🔹 ocupa todo el ancho */
+    z-index: 1200;      /* 🔹 queda por encima del contenido */
+}
+
+.logo img { height: 55px; width: auto; }
+
+.nav-links {
+    list-style: none;
+    display: flex;
+    gap: 25px;
+}
+
+.nav-links li a {
+    text-decoration: none;
+    color: #fff;
+    font-weight: 600;
+    transition: color 0.3s ease;
+}
+.nav-links li a:hover { color: #ffcc00; }
+
+/* --------------------- */
+/* BANNER */
+/* --------------------- */
+.banner {
+    background: url("../img/banner-principal.jpeg") no-repeat center/cover;
+    color: white;
+    height: 65vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    padding: 0 20px;
+    position: relative;
+}
+.banner::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background: rgba(0, 0, 0, 0.1);
+}
+.banner-content { position: relative; z-index: 2; }
+.banner-content h1 {
+    font-size: 3.2rem;
+    margin-bottom: 15px;
+    font-weight: bold;
+    color: #c3c7d2;
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.6);
+}
+.banner-content p {
+    font-size: 1.2rem;
+    max-width: 700px;
+    margin: 0 auto;
+}
