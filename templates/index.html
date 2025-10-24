@@ -1,7 +1,49 @@
-{% extends "base.html" %}
-
+{% extends "base.html" %} 
+{% load static %} 
 {% block contenido %}
 
-<h1>hola mundo</h1>
+<h2 class="page-title">
+  Diviertete Jugando
+</h2>
+<p style="padding: 20px 20px;">
+  Bienvenido a este blog, que esta especialmente destinado a los apasionados por los video juegos. Aqui podras descubrir un nuevo mundo de juegos y experiencias unicas
+</p>
+
+<section class="feature">
+
+  <!-- Bloque 1: Explorando el universo gamer -->
+  <div class="feature-item">
+    <img src="{% static 'img/proyectos.webp' %}" alt="Proyectos de alumnos" />
+    <div class="feature-text right">
+      <h2>Descubri como el mundo sigue transformandose</h2>
+      <p>
+        Este blog analiza las tendencias, lanzammientos e impacto cultural de los videojuegos. Un espacio para entender como el mundo gamer evoluciona y redefine la forma en que jugamos y nos conectamos.
+      </p>
+    </div>
+  </div>
+
+  <!-- Bloque 2: Reseñas con vision profesional -->
+  <div class="feature-item2">
+    <img src="{% static 'img/tutoriales.png' %}" alt="" />
+    <div class="feature-text left">
+      <h2>Analizamos cada juego con mirada critica y profesional/h2>
+      <p>
+        Evaluamos su jugabilidad, historia, diseño visual y experiencia del jugador para ofrecerte reseñas objetivas que te ayuden a elegir tu proxima partida.
+      </p>
+    </div>
+  </div>
+
+  <!-- Bloque 3: Tendencias que marcan el futuro gamer -->
+  <div class="feature-item">
+    <img src="{% static 'img/comunidad.jpg' %}" alt="Comunidad de aprendizaje" />
+    <div class="feature-text right">
+      <h2>Comun</h2>
+      <p>
+        Comenta, comparte ideas y colabora con otros estudiantes. Nuestra comunidad es el lugar ideal para resolver dudas, inspirarse y mejorar tus proyectos con la experiencia de todos.
+      </p>
+    </div>
+  </div>
+
+</section>
 
 {% endblock contenido %}

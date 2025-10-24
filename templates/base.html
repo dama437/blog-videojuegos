@@ -1,13 +1,143 @@
 {% load static %}
 <!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-</head>
-<body>
-   {% block contenido %}
-   {% endblock contenido %}
-</body>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="{% static 'css/reset.css' %}"/>
+    <link rel="stylesheet" href="{% static 'css/styles.css' %}" />
+    <link rel="stylesheet" href="{% static 'css/index.css' %}" />
+    <link rel="stylesheet" href="{% static 'css/lista_articulos.css' %}" />
+    <link rel="stylesheet" href="{% static 'css/crear_articulo.css' %}" />
+    <link rel="stylesheet" href="{% static 'css/detalle_articulo.css' %}" />
+    <link rel="stylesheet" href="{% static 'css/usuarios.css' %}" />
+    <link rel="stylesheet" href="{% static 'css/nosotros.css' %}" />
+    <link rel="stylesheet" href="{% static 'css/responsive.css' %}" />
+    <!-- 
+    -->
+    
+    <title>GAME ZONE</title>
+  </head>
+  <body>
+    <header>
+        <!--Logo-->
+      <div class="logo">
+        <a href="{% url 'index'%}">
+          <img src="{% static 'img/logo.jpeg' %}" alt="Logo del instituto IES" />
+        </a>
+      </div>
+
+      <!-- Botón hamburguesa (visible en pantallas pequeñas) -->
+      <button class="nav-toggle" aria-label="Abrir menú" aria-expanded="false">
+        <span class="hamburger"></span>
+      </button>
+
+      <!--Menu-->
+      <nav>
+        <ul class="nav-links">
+          <li><a href="{% url 'blog:lista_articulos'%}" onclick=" ">Posts</a></li>
+          <li><a href="{% url 'nosotros' %}" onclick="">Nosotros</a></li>
+
+          {% if user.is_authenticated %}
+              <li>
+                  <a href="{% url 'usuarios:perfil' %}" onclick="" class="registros">Perfil</a>
+              </li>
+              <li>
+                  <!-- Manteniendo la class 'form_registros' y 'registros' -->
+                  <a href="{% url 'usuarios:logout' %}" onclick="" class="form_registros registros">Cerrar sesión</a>
+              </li>
+          {% else %}
+              <li><a href="{% url 'usuarios:login' %}" onclick="" class="registros">Iniciar Sesión</a></li>
+              <li><a href="{% url 'usuarios:registro' %}" onclick="" class="registros">Registrarse</a></li>
+          {% endif %}
+        </ul>
+      </nav>
+    </header>
+
+    <section class="banner">
+        <div class="banner-content">
+            <h1 class="page-title"></h1> 
+        </div>
+    </section>
+
+    <main>
+        {% block contenido %}
+        {% endblock contenido %}
+    </main>
+
+    <footer>
+        <div class="footer-container">
+            <div class="footer-info">
+                <h3>zona gamer</h3>
+                <p>Dirección: las rosas 333</p>
+            </div>
+
+            <div class="footer-social">
+                <h3>Redes sociales</h3>
+                <ul>
+                    <li><a href="#">Facebook</a></li>
+                    <li><a href="#">Instagram</a></li>
+                    <li><a href="#">Twitter</a></li>
+                </ul>
+            </div>
+        </div>
+    </footer>
+    
+    <script>
+      document.addEventListener('DOMContentLoaded', function () {
+        var btn = document.querySelector('.nav-toggle');
+        var header = document.querySelector('header');
+        var navLinks = document.querySelector('.nav-links');
+        if (!btn || !header || !navLinks) return;
+
+        // Crear overlay (oculto por defecto)
+        var overlay = document.createElement('div');
+        overlay.className = 'nav-overlay';
+        overlay.style.position = 'fixed';
+        overlay.style.inset = 0;
+        overlay.style.background = 'rgba(0,0,0,0.35)';
+        overlay.style.opacity = '0';
+        overlay.style.pointerEvents = 'none';
+        overlay.style.transition = 'opacity 160ms ease';
+        overlay.style.zIndex = 1100;
+        document.body.appendChild(overlay);
+
+        function openMenu() {
+          header.classList.add('nav-open');
+          btn.setAttribute('aria-expanded', 'true');
+          overlay.style.opacity = '1';
+          overlay.style.pointerEvents = 'auto';
+        }
+        function closeMenu() {
+          header.classList.remove('nav-open');
+          btn.setAttribute('aria-expanded', 'false');
+          overlay.style.opacity = '0';
+          overlay.style.pointerEvents = 'none';
+        }
+
+        btn.addEventListener('click', function (e) {
+          var isOpen = header.classList.contains('nav-open');
+          if (isOpen) closeMenu(); else openMenu();
+          e.stopPropagation();
+        });
+
+        overlay.addEventListener('click', function () { closeMenu(); });
+
+        // Cerrar menú al pulsar un enlace (útil en móviles)
+        Array.prototype.forEach.call(navLinks.querySelectorAll('a'), function (a) {
+          a.addEventListener('click', function () { closeMenu(); });
+        });
+
+        // Cerrar con tecla Escape
+        document.addEventListener('keydown', function (ev) {
+          if (ev.key === 'Escape' || ev.key === 'Esc') closeMenu();
+        });
+
+        // Si se hace resize y el menú estaba abierto, cerrar para evitar layout raro
+        window.addEventListener('resize', function () {
+          if (window.innerWidth > 900 && header.classList.contains('nav-open')) closeMenu();
+        });
+      });
+    </script>
+  </body>
 </html>

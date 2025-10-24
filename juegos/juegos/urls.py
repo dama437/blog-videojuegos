@@ -9,4 +9,7 @@ urlpatterns = [
     path('admin/', admin.site.urls),
     path('', views.index, name='index'),
     path('nosotros/', views.Nosotros, name='nosotros'),
+    path('usuarios/', include('apps.usuarios.urls', namespace='usuarios')),
+    path('blog/', include('apps.blog.urls', namespace='blog')),
+    path('comentarios/', include(('apps.comentarios.urls', 'comentarios'), namespace='comentarios')),
 ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
