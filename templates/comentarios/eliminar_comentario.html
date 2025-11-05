@@ -1,0 +1,14 @@
+{% extends "base.html" %}
+
+{% block contenido %}
+<h2 class="page-title">Eliminar comentario</h2>
+
+<p class="centered-form">¿Estás seguro de que deseas eliminar este comentario?</p>
+
+<form method="post" class="comment-form centered-form">
+    {% csrf_token %}
+    <button type="submit">Sí, eliminar</button>
+    <a href="{% url 'blog:detalle_articulo' object.articulo.pk %}"  class="btn-cancel">Cancelar</a>
+</form>
+{% endblock contenido%}
+

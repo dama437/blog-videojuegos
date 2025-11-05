@@ -1,0 +1,63 @@
+{% extends "base.html" %}
+
+{% block titulo %}
+Detalle del Artículo
+{% endblock titulo %}
+
+{% block contenido %}
+<section class="blog-detail">
+  <h2 class="page-title">{{ articulo.titulo }}</h2>
+  <p>{{ articulo.contenido }}</p>
+
+  {% if articulo.imagenes.all %}
+  <div class="carousel-container">
+    {% for imagen in articulo.imagenes.all %}
+      <img src="{{ imagen.imagen.url }}" alt="{{ articulo.titulo }}">
+    {% endfor %}
+  </div>
+  {% endif %}
+  <p class="visitas"> {{ articulo.visitas }} visitas</p>
+  {# Botones de edición/eliminación del artículo solo si puede editar #}
+  {% if usuario_actual.is_authenticated and usuario_actual == articulo.autor or usuario_actual.is_staff or usuario_actual.is_superuser %}
+    <div class="action-buttons">
+      <a href="{% url 'blog:editar_articulo' articulo.pk %}" class="btn btn-primary">Editar</a>
+      <a href="{% url 'blog:eliminar_articulo' articulo.pk %}" class="btn btn-danger">Eliminar</a>
+    </div>
+  {% endif %}
+
+  <hr>
+
+  <h2>Comentarios</h2>
+
+  {% for comentario in comentarios %}
+    <div class="comment">
+      <strong>{{ comentario.autor }}</strong>:
+      <p>{{ comentario.contenido }}</p>
+      {% if usuario_actual == comentario.autor or usuario_actual.is_superuser or usuario_actual.is_staff %}
+        <a href="{% url 'comentarios:editar_comentario' comentario.pk %}">Editar</a>
+        <a href="{% url 'comentarios:eliminar_comentario' comentario.pk %}">Eliminar</a>
+      {% endif %}
+    </div>
+  {% empty %}
+    <p>No hay comentarios aún. ¡Sé el primero en comentar!</p>
+  {% endfor %}
+
+  <hr>
+
+  {% if usuario_actual.is_authenticated %}
+    <h3>Deja tu comentario</h3>
+    <form action="{% url 'comentarios:agregar_comentario' articulo.pk %}" method="post" class="blog-form">
+      {% csrf_token %}
+      {{ form.as_p }}
+      <button type="submit">Comentar</button>
+    </form>
+  {% else %}
+    <p>Debes <a href="{% url 'usuarios:login' %}">iniciar sesión</a> para comentar.</p>
+  {% endif %}
+
+  <!-- Botón volver a posts -->
+  <div class="action-buttons">
+    <a href="{% url 'blog:lista_articulos' %}" class="btn btn-secondary">Volver a posts</a>
+  </div>
+</section>
+{% endblock contenido %}

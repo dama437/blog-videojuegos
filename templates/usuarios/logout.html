@@ -1,0 +1,25 @@
+{% extends "base.html" %} 
+{% load static %}
+{% block contenido %}
+
+<div class="usuarios-app">
+  <h2>Cerrar Sesión</h2>
+  <p>¿Estás seguro que querés cerrar sesión?</p>
+  
+    <div class="card perfil-card">
+
+      <img class="avatar" src="{% static 'img/avatar.png' %}" alt="Avatar">
+      <form method="post">
+        
+        {% csrf_token %}
+        
+        <div class="action-buttons">
+          <button type="submit" class="btn btn-danger">Sí, cerrar sesión</button>
+          <a href="{% url 'usuarios:perfil' %}" class="btn btn-secondary">Cancelar</a>
+        </div>
+      </form>
+    </div>
+  
+</div>
+
+{% endblock contenido %}

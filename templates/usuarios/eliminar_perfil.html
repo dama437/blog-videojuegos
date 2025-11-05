@@ -1,0 +1,19 @@
+{% extends "base.html" %} 
+
+{% block contenido %}
+
+<div class="usuarios-app">
+  <h2>Eliminar Cuenta</h2>
+  <p>¿Estás seguro que querés eliminar tu cuenta? Esta acción no se puede deshacer.</p>
+  <div class="card centered-form">
+    <form method="post">
+      {% csrf_token %}
+      <div class="action-buttons">
+        <button type="submit" class="btn btn-danger">Sí, eliminar mi cuenta</button>
+        <a href="{% url 'usuarios:perfil' %}" class="btn btn-secondary">Cancelar</a>
+      </div>
+    </form>
+  </div>
+</div>
+
+{% endblock contenido %}

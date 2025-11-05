@@ -1,0 +1,128 @@
+/* Responsive base: asegurar que la página funciona hasta 400px */
+
+/* Ajustes generales para evitar que el header fijo tape contenido */
+
+@media (max-width: 768px) {
+	body { padding-top: 72px; }
+}
+@media (max-width: 480px) {
+	body { padding-top: 68px; }
+}
+
+@media (max-width: 480px) {
+    header {
+       padding: 10px 20px;
+        display: flex;
+        flex-direction: row;
+        text-align: center;     
+    }
+}
+
+/* NAV - Botón hamburguesa */
+.nav-toggle {
+	display: none; /* visible solo en pantallas pequeñas */
+	background: transparent;
+	border: none;
+	cursor: pointer;
+	padding: 8px;
+	margin-left: 12px;
+	position: fixed; /* queda fija */
+	top: 12px;
+	right: 14px;
+	z-index: 1101;
+}
+.nav-toggle .hamburger,
+.nav-toggle .hamburger::before,
+.nav-toggle .hamburger::after {
+	display: block;
+	width: 26px;
+	height: 3px;
+	background: #fff;
+	border-radius: 3px;
+	position: relative;
+}
+.nav-toggle .hamburger::before,
+.nav-toggle .hamburger::after {
+	content: '';
+	position: absolute;
+	left: 0;
+}
+.nav-toggle .hamburger::before { top: -8px; }
+.nav-toggle .hamburger::after { top: 8px; }
+
+/* Estilos por defecto: nav en línea */
+.nav-links { display: flex; align-items: center; }
+
+/* Colapsar el menú en pantallas pequeñas */
+@media (max-width: 900px) {
+	.nav-toggle { display: inline-flex; align-items: center; }
+	.nav-links {
+		position: absolute;
+		top: 100%;
+		right: 0;
+		background: linear-gradient(90deg, #007BFF, #0056b3);
+		width: 240px;
+		max-width: min(80vw, 300px);
+		transform: translateY(-10px);
+		opacity: 0;
+		pointer-events: none;
+		transition: opacity 180ms ease, transform 180ms ease;
+		flex-direction: column;
+		gap: 0;
+		padding: 10px 8px;
+		border-radius: 6px;
+		box-shadow: 0 8px 20px rgba(0,0,0,0.12);
+	}
+	.nav-links li { width: 100%; }
+	.nav-links li a { display: block; padding: 10px 12px; }
+	header.nav-open .nav-links {
+		transform: translateY(0);
+		opacity: 1;
+		pointer-events: auto;
+	}
+}
+
+/* Overlay (controlado por JS) */
+.nav-overlay { display: block; }
+
+
+/* Estilos para pantallas muy pequeñas: hasta 400px */
+@media (max-width: 400px) {
+	header { padding: 10px 14px; }
+	.logo img { height: 42px; }
+	.banner { height: 45vh; }
+	.banner-content h1 { font-size: 1.6rem; }
+	.banner-content p { font-size: 0.95rem; }
+	.nav-links { width: 100%; }
+	.nav-links li a { font-size: 0.95rem; }
+	.card { padding: 18px; }
+	.footer-container { flex-direction: column; align-items: flex-start; }
+}
+
+/* Ajustes intermedios: tablets */
+@media (max-width: 1024px) {
+	.banner-content h1 { font-size: 2.4rem; }
+}
+
+/* Accesibilidad: mostrar estado del menú con transformación de la hamburguesa */
+header.nav-open .nav-toggle .hamburger {
+	background: transparent;
+}
+header.nav-open .nav-toggle .hamburger::before {
+	transform: translateY(8px) rotate(45deg);
+}
+header.nav-open .nav-toggle .hamburger::after {
+	transform: translateY(-8px) rotate(-45deg);
+}
+
+/* Asegurar imágenes responsivas en contenidos */
+img { max-width: 100%; height: auto; }
+
+/* Separación consistente entre botones globales */
+.btn, .btn-cancel { margin: 6px; }
+
+/* Formularios y tarjetas ocupen todo el ancho en móviles */
+@media (max-width: 600px) {
+	.card { max-width: 100%; border-radius: 8px; }
+}
+

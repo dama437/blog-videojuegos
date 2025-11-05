@@ -1,0 +1,66 @@
+/* ===================== */
+/* INICIO - CARACTERÍSTICAS */
+/* ===================== */
+
+.page-title {
+  text-align: center;
+  margin: 40px 0;
+  font-size: 2.5rem;
+  font-weight: 700;
+
+  /* Color principal */
+  color: #1E3A8A; /* azul académico, serio y profesional */
+
+  /* Sombra de texto sutil para dar profundidad */
+  text-shadow: 1px 1px 3px rgba(0,0,0,0.3);
+
+  /* Opcional: un pequeño espaciado interno si quieres separar del fondo */
+  padding: 5px 0;
+}
+
+
+/* Sección principal */
+.feature {
+    display: flex;
+    flex-direction: column;
+    gap: 80px;
+    padding: 0 30px;
+    max-width: 1200px;
+    margin: auto;
+}
+
+/* Bloques de contenido */
+.feature-item,
+.feature-item2 {
+    display: flex;
+    align-items: center;
+    gap: 40px;
+}
+
+.feature-item img,
+.feature-item2 img {
+    width: 50%;
+    height: auto;
+    border-radius: 12px;
+    box-shadow: 0px 6px 15px rgba(0,0,0,0.1);
+    transition: transform 0.4s ease;
+}
+.feature-item img:hover,
+.feature-item2 img:hover { transform: scale(1.03); }
+
+/* Texto */
+.feature-text { width: 50%; }
+.feature-text h2 {
+    margin-bottom: 15px;
+    font-size: 2rem;
+    color: #007BFF;
+}
+.feature-text p {
+    font-size: 1.1rem;
+    line-height: 1.6rem;
+    color: #555;
+}
+
+/* Alternar orden */
+.feature-item2 { flex-direction: row-reverse; }
+

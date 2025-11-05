@@ -1,0 +1,135 @@
+/* ========================= */
+/* FORMULARIOS ARTÍCULOS (editar, eliminar, etc.) */
+/* ========================= */
+.blog-form {
+  max-width: 700px;
+  margin: 40px auto;
+  padding: 30px;
+  background: #fff;
+  border-radius: 12px;
+  box-shadow: 0 4px 15px rgba(0,0,0,0.12);
+  display: flex;
+  flex-direction: column;
+  gap: 18px;
+}
+
+.blog-form label { 
+  font-weight: 600; 
+  color: #444; 
+  display: flex; 
+}
+
+.textarea_custom1 {
+  width: 100%;          /* ocupa todo el ancho del contenedor */
+  max-width: 100%;      /* nunca se pasa del contenedor */
+  box-sizing: border-box;
+}
+
+.blog-form input,
+.blog-form textarea,
+.blog-form select {
+  padding: 12px;
+  border: 1px solid #ccc;
+  border-radius: 8px;
+  font-size: 1rem;
+  transition: border-color 0.3s ease;
+}
+
+
+
+.blog-form input:focus,
+.blog-form textarea:focus,
+.blog-form select:focus {
+  border-color: #f39c12;
+  outline: none;
+}
+
+.blog-form button {
+  background-color: #f39c12;
+  color: #fff;
+  border: none;
+  padding: 12px;
+  border-radius: 8px;
+  font-weight: bold;
+  cursor: pointer;
+  transition: background 0.3s ease;
+}
+.blog-form button:hover { background-color: #e67e22; }
+
+/* Responsivo */
+@media (max-width: 768px) {
+  .blog-form { padding: 20px; }
+  .blog-form button, .btn-cancel { width: 100%; }
+}
+
+/* ========================= */
+/* FORMULARIO CREAR ARTÍCULO */
+/* ========================= */
+.crear_articulo {
+  max-width: 700px;
+  margin: 40px auto;
+  padding: 30px;
+  background: #fff;
+  border-radius: 12px;
+  box-shadow: 0 4px 15px rgba(0,0,0,0.12);
+  display: flex;
+  flex-direction: column;
+  gap: 18px;
+}
+
+.crear_articulo label { font-weight: 600; color: #444; }
+
+.crear_articulo input,
+.crear_articulo textarea,
+.crear_articulo select {
+  padding: 12px;
+  border: 1px solid #ccc;
+  border-radius: 8px;
+  font-size: 1rem;
+  transition: border-color 0.3s ease;
+}
+.crear_articulo input:focus,
+.crear_articulo textarea:focus,
+.crear_articulo select:focus {
+  border-color: #27ae60;
+  outline: none;
+}
+
+.crear_articulo button {
+  background-color: #27ae60;
+  color: #fff;
+  border: none;
+  
+  border-radius: 8px;
+  font-weight: bold;
+  cursor: pointer;
+  transition: background 0.3s ease;
+  font-size: 16px;/* separación entre botones */
+  padding: 10px 18px
+}
+
+.crear_articulo button:hover { background-color: #219150; }
+
+@media (max-width: 480px) {
+  .textarea_custom1 {
+    width: 100%;
+    font-size: 14px;     /* opcional: fuente un poco más chica */
+    /* El atributo rows se define en HTML, no en CSS */
+  }
+}
+
+/* Mobile tweaks para formularios crear/editar */
+@media (max-width: 480px) {
+  .crear_articulo, .blog-form { max-width: 92%; margin: 18px auto; padding: 14px; }
+  .crear_articulo input, .crear_articulo textarea, .crear_articulo select,
+  .blog-form input, .blog-form textarea, .blog-form select { padding: 10px; font-size: 0.9rem; }
+  .crear_articulo button { padding: 10px;  }
+  .blog-form button { padding: 10px; width: 100%; }
+}
+@media (max-width: 400px) {
+  .crear_articulo, .blog-form { max-width: 96%; margin: 12px auto; padding: 12px; }
+  .crear_articulo label, .blog-form label { font-size: 0.95rem; }
+  .crear_articulo input, .crear_articulo textarea, .crear_articulo select { font-size: 0.95rem; }
+}
+
+

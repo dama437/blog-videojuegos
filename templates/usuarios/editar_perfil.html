@@ -1,0 +1,19 @@
+{% extends "base.html" %} 
+
+{% block contenido %}
+
+<div class="usuarios-app">
+  <h2>Editar Perfil</h2>
+  <div class="card">
+    <form method="post">
+      {% csrf_token %}
+      {{ form.as_p }}
+      <div class="action-buttons">
+        <button type="submit" class="btn btn-success">Guardar cambios</button>
+        <a href="{% url 'usuarios:perfil' %}" class="btn btn-secondary">Cancelar</a>
+      </div>
+    </form>
+  </div>
+</div>
+
+{% endblock contenido %}

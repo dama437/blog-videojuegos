@@ -1,0 +1,81 @@
+{% extends 'base.html' %}
+
+{% block titulo %}
+Crear artículo
+{% endblock titulo %}
+
+{% block contenido %}
+<h2 class="page-title">Crear nuevo artículo</h2>
+
+<form class="crear_articulo" method="post" enctype="multipart/form-data">
+    {% csrf_token %}
+    {{ form.as_p }}
+
+    <p>
+        <label for="id_imagenes">Imágenes:</label>
+        <input type="file" id="id_imagenes" multiple accept="image/*">
+    </p>
+
+    <div id="previews" style="display:flex;gap:8px;flex-wrap:wrap;margin-bottom:8px;"></div>
+
+    <input type="file" name="imagenes" id="imagenes_hidden" style="display:none;" multiple>
+
+    <script>
+    (function(){
+        const input = document.getElementById('id_imagenes');
+        const hidden = document.getElementById('imagenes_hidden');
+        const previews = document.getElementById('previews');
+        const dt = new DataTransfer();
+
+        function updateHiddenAndPreviews(){
+            hidden.files = dt.files;
+            previews.innerHTML = '';
+            for(let i=0;i<dt.files.length;i++){
+                const file = dt.files[i];
+                const url = URL.createObjectURL(file);
+
+                const wrapper = document.createElement('div');
+                wrapper.classList.add('preview-wrapper');
+
+                const img = document.createElement('img');
+                img.src = url;
+
+                const btn = document.createElement('button');
+                btn.type = 'button';
+                btn.textContent = '✕';
+                btn.classList.add('preview-btn');
+
+                btn.addEventListener('click', ()=>{
+                    const newDt = new DataTransfer();
+                    for(let j=0;j<dt.files.length;j++){
+                        if(j===i) continue;
+                        newDt.items.add(dt.files[j]);
+                    }
+                    while(dt.items.length) dt.items.remove(0);
+                    for(let k=0;k<newDt.files.length;k++) dt.items.add(newDt.files[k]);
+                    updateHiddenAndPreviews();
+                });
+
+                wrapper.appendChild(img);
+                wrapper.appendChild(btn);
+                previews.appendChild(wrapper);
+            }
+        }
+
+        input.addEventListener('change', (e)=>{
+            for(const file of e.target.files){
+                dt.items.add(file);
+            }
+            input.value = '';
+            updateHiddenAndPreviews();
+        });
+    })();
+    </script>
+
+    <!-- Botones centrados -->
+    <div class="action-buttons">
+        <button type="submit" class="btn btn-primary" style="width: 100%;">Publicar</button>
+        <a href="{% url 'blog:lista_articulos' %}" class="btn btn-secondary btn-cancel">Cancelar</a>
+    </div>
+</form>
+{% endblock contenido %}

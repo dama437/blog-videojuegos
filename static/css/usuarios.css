@@ -1,0 +1,140 @@
+/* ========================= */
+/* CONTENEDOR DE USUARIOS */
+/* ========================= */
+.usuarios-app {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-start;
+  padding: 50px 20px;
+}
+
+/* Títulos */
+.usuarios-app h2 {
+  font-size: 2rem;
+  margin-bottom: 25px;
+  color: #1E3A8A;
+  text-align: center;
+  font-weight: 700;
+  text-shadow: 1px 1px 3px rgba(0,0,0,0.3);
+}
+
+/* ========================= */
+/* TARJETAS Y FORMULARIOS */
+/* ========================= */
+.card {
+  background-color: #fff;
+  padding: 30px;
+  border-radius: 12px;
+  width: 100%;
+  max-width: 420px;
+  box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+  display: flex;
+  flex-direction: column;
+  align-items: stretch;
+  margin-bottom: 20px;
+}
+
+/* Clase para inputs añadida desde la plantilla de login */
+.input-text {
+  width: 100%;
+  padding: 12px;
+  margin-bottom: 16px;
+  border: 1px solid #bdc3c7;
+  border-radius: 6px;
+  font-size: 1rem;
+  box-sizing: border-box;
+}
+
+/* En móviles un poco más de separación superior para que el header fijo no tape el formulario */
+@media (max-width: 480px) {
+  .usuarios-app { padding-top: 70px; }
+  .card { margin-top: 12px; }
+}
+
+.card form {
+  display: flex;
+  flex-direction: column;
+}
+
+/* Labels e Inputs */
+.card label {
+  font-weight: bold;
+  margin-bottom: 5px;
+  color: #34495e;
+}
+
+.card input {
+  padding: 12px;
+  margin-bottom: 18px;
+  border: 1px solid #bdc3c7;
+  border-radius: 6px;
+  font-size: 1rem;
+  transition: border 0.3s;
+}
+
+.card input:focus {
+  border-color: #007BFF;
+  outline: none;
+}
+
+/* ========================= */
+/* PERFIL DE USUARIO */
+/* ========================= */
+.perfil-card {
+  align-items: center;
+  text-align: center;
+}
+
+.perfil-card ul {
+  list-style: none;
+  padding: 0;
+  margin: 20px 0;
+  width: 100%;
+  text-align: left;
+}
+
+.perfil-card ul li {
+  margin-bottom: 12px;
+  font-size: 1rem;
+  color: #2c3e50;
+}
+
+/* Avatar */
+.perfil-card .avatar {
+  width: 120px;
+  height: 120px;
+  border-radius: 50%;
+  object-fit: cover;
+  margin-bottom: 20px;
+  border: 3px solid #007BFF;
+}
+
+/* Botones del perfil */
+.perfil-buttons {
+  display: flex;
+  justify-content: center;
+  gap: 12px;
+  flex-wrap: wrap;
+}
+
+/* ========================= */
+/* LINKS DE REGISTRO/LOGIN */
+/* ========================= */
+.usuarios-app p {
+  margin: 20px 20px;
+  font-size: 0.95rem;
+  color: #7f8c8d;
+  text-align: center;
+}
+
+.usuarios-app p a {
+  color: #007BFF;
+  text-decoration: none;
+  font-weight: bold;
+}
+
+.usuarios-app p a:hover {
+  text-decoration: underline;
+}
+

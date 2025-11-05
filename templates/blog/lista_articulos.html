@@ -1,0 +1,79 @@
+{% extends 'base.html' %}
+
+{% block titulo %}
+POSTEOS
+{% endblock titulo %}
+
+{% block contenido %}
+<section>
+    <h2 class="page-title">POSTEOS</h2>
+
+    <!-- Filtros + Crear artículo en la misma fila -->
+    <div class="filtros-container">
+      <form method="get" class="filtros-form">
+        <!-- Categorías -->
+        <select name="categoria">
+          <option value="">Todas las categorías</option>
+          {% for categoria in categorias %}
+            <option value="{{ categoria.id }}" {% if request.GET.categoria == categoria.id|stringformat:"s" %}selected{% endif %}>
+              {{ categoria.nombre }}
+            </option>
+          {% endfor %}
+        </select>
+
+        <!-- Orden -->
+        <select name="ordenar_por">
+          <option value="">Ordenar por...</option>
+          <option value="asc" {% if request.GET.ordenar_por == 'asc' %}selected{% endif %}>Visitas (asc)</option>
+          <option value="desc" {% if request.GET.ordenar_por == 'desc' %}selected{% endif %}>Visitas (desc)</option>
+          <option value="fecha_asc" {% if request.GET.ordenar_por == 'fecha_asc' %}selected{% endif %}>Fecha (asc)</option>
+          <option value="fecha_desc" {% if request.GET.ordenar_por == 'fecha_desc' %}selected{% endif %}>Fecha (desc)</option>
+        </select>
+
+        <button type="submit" class="btn btn-primary">Filtrar</button>
+      </form>
+
+      <div class="crear-articulo">
+        <a href="{% url 'blog:crear_articulo' %}">Cargar posteo</a>
+      </div>
+    </div>
+
+    <div class="articulos-container">
+        {% for articulo in articulos %}
+        <article class="articulo">
+            {% if articulo.imagenes.first %}
+            <img src="{{ articulo.imagenes.first.imagen.url }}" alt="{{ articulo.titulo }}">
+            {% else %}
+            <p>No hay imagen</p>
+            {% endif %}
+
+            <h3>{{ articulo.titulo }}</h3>
+            <p>{{ articulo.contenido|truncatewords:20 }}</p>
+            <button>
+              <a href="{% url 'blog:detalle_articulo' articulo.pk %}">Ver más</a>
+            </button>
+            <p class="fecha">Publicado el {{ articulo.fecha_publicacion|date:"d M Y" }}</p>
+        </article>
+        {% empty %}
+        <p>No hay artículos disponibles.</p>
+        {% endfor %}
+    </div>
+
+    <!-- Paginación -->
+{% if is_paginated %}
+<div class="paginacion">
+    {% if page_obj.has_previous %}
+        <a href="?page={{ page_obj.previous_page_number }}">Anterior</a>
+        <span>{{ page_obj.number }} de {{ page_obj.paginator.num_pages }} Páginas</span>
+    {% else %}
+        <span>Página {{ page_obj.number }} de {{ page_obj.paginator.num_pages }} </span>
+    {% endif %}
+    {% if page_obj.has_next %}
+        <a href="?page={{ page_obj.next_page_number }}">Siguiente</a>
+    {% endif %}
+</div>
+{% endif %}
+
+
+</section>
+{% endblock contenido %}

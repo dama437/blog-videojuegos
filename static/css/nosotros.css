@@ -1,0 +1,54 @@
+.section-block {
+  margin: 2rem 0;
+  padding: 1rem;
+  background: linear-gradient(180deg, rgb(230, 230, 230) 0%, rgb(249, 249, 249) 100%);
+  border-radius: 12px;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+}
+
+.section-card {
+  display: flex;
+  flex-direction: row;
+  gap: 2rem;
+}
+
+.section-content {
+  flex: 1;
+}
+
+.section-content h2 {
+  margin-bottom: 1rem;
+  font-size: 1.8rem;
+}
+
+.section-content ul {
+  list-style-type: disc;
+  padding-left: 1.5rem;
+}
+
+/* Dos columnas en secciones específicas */
+.dos-col {
+  display: flex;
+  gap: 2rem;
+}
+
+.ok-title, .no-title {
+  margin-bottom: 0.5rem;
+}
+
+/* Responsivo hasta 480px */
+@media screen and (max-width: 480px) {
+  .section-card {
+    flex-direction: column;
+  }
+  .dos-col {
+    flex-direction: column;
+    gap: 1rem;
+  }
+  .section-content h2 {
+    font-size: 1.5rem;
+  }
+  .section-content ul {
+    padding-left: 1rem;
+  }
+}

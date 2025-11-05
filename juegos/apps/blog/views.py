@@ -1,4 +1,4 @@
-from django.views.generic import ListView, DetailView, TemplateView, CreateView
+from django.views.generic import ListView, DetailView, CreateView, UpdateView, DeleteView, TemplateView
 from django.urls import reverse_lazy
 from .models import Articulo, Categoria, ImagenArticulo
 from .forms import ArticuloForm
@@ -42,6 +42,7 @@ class ArticuloListView(ListView):
         context['categorias'] = Categoria.objects.all()
         return context
 
+
 class ArticuloDetailView(DetailView):
     model = Articulo
     template_name = 'blog/detalle_articulo.html'
@@ -80,7 +81,7 @@ class ArticuloDetailView(DetailView):
                 autor=request.user
             )
         return self.get(request, *args, **kwargs)
-    
+
 
 class ArticuloCreateView(LoginRequiredMixin, CreateView):
     model = Articulo
@@ -118,6 +119,33 @@ class ArticuloCreateView(LoginRequiredMixin, CreateView):
         return super().form_invalid(form)
 
 
+class ArticuloUpdateView(LoginRequiredMixin, UserPassesTestMixin, UpdateView):
+    model = Articulo
+    form_class = ArticuloForm
+    template_name = 'blog/editar_articulo.html'
+
+    def form_valid(self, form):
+        response = super().form_valid(form)
+        for archivo in self.request.FILES.getlist('imagenes'):
+            ImagenArticulo.objects.create(articulo=self.object, imagen=archivo)
+        return response
+
+    def test_func(self):
+        return self.get_object().puede_editar(self.request.user)
+
+    def get_success_url(self):
+        return reverse_lazy('blog:detalle_articulo', kwargs={'pk': self.object.pk})
+
+
+class ArticuloDeleteView(LoginRequiredMixin, UserPassesTestMixin, DeleteView):
+    model = Articulo
+    template_name = 'blog/eliminar_articulo.html'
+    success_url = reverse_lazy('blog:lista_articulos')
+
+    def test_func(self):
+        return self.get_object().puede_editar(self.request.user)
+
+
 class PaginaPrincipalView(TemplateView):
     template_name = 'base.html'
 
@@ -126,4 +154,3 @@ class PaginaPrincipalView(TemplateView):
         total_visitas = Articulo.objects.aggregate(total_visitas=Sum('visitas'))['total_visitas'] or 0
         context['total_visitas'] = total_visitas
         return context
-

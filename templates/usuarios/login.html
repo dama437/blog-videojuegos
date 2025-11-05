@@ -1,0 +1,29 @@
+{% extends "base.html" %} 
+
+{% block contenido %}
+
+<div class="usuarios-app">
+  <h2>Iniciar Sesión</h2>
+  <div class="card">
+    <form method="post">
+      {% csrf_token %}
+
+      <p>
+        <label for="id_username">Usuario:</label><br>
+        {{ form.username }}
+      </p>
+
+      <p>
+        <label for="id_password">Contraseña:</label><br>
+        {{ form.password }}
+      </p>
+
+      <div class="action-buttons">
+        <button type="submit" class="btn btn-primary">Iniciar Sesión</button>
+      </div>
+    </form>
+  </div>
+  <p>¿No tienes cuenta? <a href="{% url 'usuarios:registro' %}">Regístrate aquí</a></p>
+</div>
+
+{% endblock contenido %}

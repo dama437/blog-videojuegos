@@ -1,0 +1,22 @@
+{% extends "base.html" %}
+
+{% block titulo %}
+Eliminar artículo
+{% endblock titulo %}
+
+{% block contenido %}
+<h2 class="page-title">Eliminar artículo</h2>
+
+<form method="post" class="blog-form" style="text-align:center;">
+  {% csrf_token %}
+
+  <p>¿Estás seguro de que deseas eliminar este artículo?</p>
+  <p><strong>{{ object.titulo }}</strong></p>
+  <p style="color:#666; margin-top:8px;">Esta acción no se puede deshacer.</p>
+
+  <div style="margin-top:18px; display:flex; justify-content:center; gap:12px;">
+    <button type="submit" class="btn btn-peligro">Sí, eliminar</button>
+    <a href="{% url 'blog:detalle_articulo' articulo.pk %}" class="btn btn-cancel">Cancelar</a>
+  </div>
+</form>
+{% endblock contenido %}

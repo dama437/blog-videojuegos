@@ -1,0 +1,16 @@
+{% extends "base.html" %}
+
+{% block titulo %}
+Editar Comentario
+{% endblock titulo %}
+
+{% block contenido %}
+<h2 class="page-title">Editar comentario</h2>
+
+<form method="post" class="comment-form">
+    {% csrf_token %}
+    {{ form.as_p }}
+    <button type="submit">Guardar cambios</button>
+    <a href="{% url 'blog:detalle_articulo' object.articulo.pk %}" class="btn-cancel">Cancelar</a>
+</form>
+{% endblock contenido %}
