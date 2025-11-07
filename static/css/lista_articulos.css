@@ -30,7 +30,7 @@
 .articulo .fecha { font-size: 0.9rem; color: #777; }
 
 .articulo button {
-  background-color: #f39c12;
+  background-color: #110877;
   border: none;
   padding: 8px 15px;
   border-radius: 5px;
@@ -88,11 +88,11 @@
 /* Asegurar selects no desborden y tengan margen entre sí */
 .filtros-form select + select { margin-left: 6px; }
 .filtros-form select:focus {
-  border-color: #f39c12;
+  border-color: #1292f3;
   outline: none;
 }
 .filtros-form .btn {
-  background-color: #f39c12;
+  background-color: #5e12f3;
   border: none;
   padding: 8px 15px;
   border-radius: 5px;
@@ -101,7 +101,7 @@
   cursor: pointer;
   transition: background 0.3s;
 }
-.filtros-form .btn:hover { background-color: #e67e22; }
+.filtros-form .btn:hover { background-color: #05149b; }
 
 /* ========================= */
 /* PAGINACION */
@@ -124,7 +124,7 @@
 }
 .crear-articulo a {
   display: inline-block;
-  background-color: #27ae60;
+  background-color: #277bae;
   padding: 10px 20px;
   color: #fff;
   text-decoration: none;

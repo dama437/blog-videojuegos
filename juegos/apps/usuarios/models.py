@@ -7,7 +7,7 @@ class Usuario(AbstractUser):
     avatar = models.ImageField(
         blank=True,
         null=True,
-        default='static/img/avatar_male.png' 
+        default='static/img/avatar-perfil.jpg' 
     )
 
     def __str__(self):
